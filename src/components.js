@@ -213,6 +213,8 @@ Crafty.c('Bubsy', {
   Kill: function() {
     var killed = true;
     Crafty.audio.play('kill', 1, 0.5);
+    Crafty.viewport.scroll('_x', 0);
+    Crafty.viewport.scroll('_y', 0);
     Crafty.scene('Dead');
   }
 });

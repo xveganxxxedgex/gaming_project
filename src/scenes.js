@@ -31,7 +31,7 @@ Crafty.scene('Game_scene_1', function() {
     else 
       Crafty.viewport.scroll('_x', 0);
 
-    if(this.y > 1975)
+    if(this.y > 2000)
       Crafty.viewport.scroll('_y', -1700);
     else if(this.y > 300)
       Crafty.viewport.scroll('_y', -this.y + 300);
@@ -51,15 +51,14 @@ Crafty.scene('Game_scene_1', function() {
   if (new_game) {
     var time = 0;
     function countTime() {
-      var html = "<p>" + time + "</p>";
-      var target = document.getElementById("timer");
-      target.innerHTML = html;
+      var html = time;
+      document.getElementById("timer").innerHTML = html;
       time++;
     }
     var counter = setInterval(countTime, 1000);
 
     function log_time() {
-      return time;
+      return time - 1;
     }
   }
 
@@ -70,15 +69,17 @@ Crafty.scene('Game_scene_1', function() {
     for (var y = 0; y < Game.map_grid.height; y++) {
       var top = ((x != 0) && (x < Game.map_grid.width - 1)) && (y == 0);
       var bottom = ((x != 0) && (x < Game.map_grid.width - 1)) && (y == Game.map_grid.height - 1);
+      var left = ((x == 0) && ((y != 0) && (y != Game.map_grid.height - 1)));
+      var right = ((x == Game.map_grid.width - 1) && ((y != 0) && (y != Game.map_grid.height - 1)))
       var tleft_corner = (x == 0 && y == 0);
       var bleft_corner = ((x == 0) && (y == Game.map_grid.height - 1));
       var tright_corner = (x == Game.map_grid.width - 1 && y == 0);
       var bright_corner = (x == Game.map_grid.width - 1  && y == Game.map_grid.height - 1);
-      if((x == 0) && ((y != 0) && (y != Game.map_grid.height - 1))) {
+      if(left) {
         Crafty.e('Maze_Left').at(x, y);
         this.occupied[x][y] = true;
       }
-      else if ((x == Game.map_grid.width - 1) && ((y != 0) && (y != Game.map_grid.height - 1))) {
+      else if (right) {
         Crafty.e('Maze_Right').at(x, y);
         this.occupied[x][y] = true;
       }
@@ -161,12 +162,12 @@ for (var y = 1; y < map_data.length; y++) {
     }
 }
  
-  var max_treats = 100;
+  var max_treats = 70;
   for (var x = 0; x < Game.map_grid.width; x++) {
     for (var y = 0; y < Game.map_grid.height; y++) {
       var new_sweet = Math.floor((Math.random() * 16) + 1);
       var chance = Math.random();
-      if (chance < 0.1) {
+      if (chance < 0.08) {
         if (Crafty('Treat').length < max_treats && !this.occupied[x][y]) {
           Crafty.e([
             'Mushmousse', 'Pinkpie', 'Tailpie', 'Mushcake',
@@ -179,21 +180,25 @@ for (var y = 1; y < map_data.length; y++) {
     }
   }
 
+
   this.show_victory = this.bind('TreatObtained', function() {
       if (!Crafty('Treat').length) {
       new_game = false;
       console.log(log_time());
       clearInterval(counter);
+      Crafty.viewport.scroll('_x', 0);
+      Crafty.viewport.scroll('_y', 0);
       Crafty.scene('Victory');
       };
   });
 
-  this.show_died = this.bind('Kill', function() {
-      new_game = false;
-      console.log(log_time());
-      clearInterval(counter);
-      Crafty.scene('Dead');
-  });
+  // DOESN'T WORK
+  // this.show_died = this.bind('Kill', function() {
+  //     new_game = false;
+  //     console.log(log_time());
+  //     clearInterval(counter);
+  //     Crafty.scene('Dead');
+  // });
 
   Crafty.audio.play("start");
 }, 
@@ -221,7 +226,7 @@ Crafty.scene('Loading', function(){
     // put the text in the center of it's given area.
     // the height starts the text at the bottom of the game screen, then subtracts 24 pixels
     // the w placer makes the text take up the width of the game screen x axis
-    .attr({ x: 0, y: Game.height()/2 - 24, w: Game.width() })
+    .attr({x: 300, y: 275, w: 500})
     .css($text_css);
  
   // Load our sprite map image and sounds from the assets folder
@@ -257,7 +262,8 @@ Crafty.scene('Loading', function(){
     });
 
     Crafty.sprite(47, 'assets/4747.gif', {
-      spr_bubsy_stand:   [0, 2]
+      spr_bubsy_stand:   [0, 2],
+      spr_bubsy_win:     [5, 3]
     });
 
     Crafty.sprite(47, 'assets/mino_updated.gif', {
@@ -291,11 +297,11 @@ Crafty.scene('Loading', function(){
       kill:     ['assets/exploder.mp3'], 
       win:      ['assets/x_got.mp3'],
       start:    ['assets/sphere.mp3'],
-      // theme:    ['assets/breezy.mp3']  ///////////////ENABLE MUSIC
+      theme:    ['assets/breezy.mp3']  ///////////////ENABLE MUSIC
     });
 
 
-    // Crafty.audio.play("theme", -1);  ///////////////ENABLE MUSIC
+    Crafty.audio.play("theme", -1);  ///////////////ENABLE MUSIC
  
     // Now that our sprites are ready to draw, start the game
     Crafty.scene('Game_scene_1');
@@ -309,13 +315,14 @@ Crafty.scene('Loading', function(){
 
 // declares the Victory screen variable
   Crafty.scene('Victory', function() {
-    Crafty.e('2D, DOM, Text, Background')
+    var time = parseInt(document.getElementById("timer").innerHTML)
+    Crafty.e('2D, DOM, Text')
       // this places the text victory message at the 0,0 coordinate on the stage
       .attr({x: 300, y: 275, w: 500})
-      .text('You got all the treats!').css($text_css);
-      // in " + time + " seconds!";
+      .text('You got all the treats in ' + time + ' seconds!').css($text_css);
+      
       Crafty.background('black');
-      Crafty.audio.play("win"); 
+      Crafty.audio.play("win");
 
   // After a short delay, watch for the player to press a key, then restart
   // the game when a key is pressed
@@ -364,7 +371,7 @@ function() {
 
 // declares the Victory screen variable
   Crafty.scene('Dead', function() {
-    Crafty.e('2D, DOM, Text, Background')
+    Crafty.e('2D, DOM, Text')
       // this places the text victory message at the 0,0 coordinate on the stage
       .attr({x: 300, y: 275, w: 500})
       .text('The minotaur punched you and took all your treats!').css($text_css);
@@ -381,34 +388,7 @@ function() {
   setTimeout(function() { 
     delay = false;
     if (!delay) {
-      Crafty.scene('Again');
+      Crafty.scene('Press');
     }
   }, 3000);
-});
-
-// Press Any Button Scene
-// -----------------
-
-  Crafty.scene('Again', function() {
-    Crafty.e('2D, DOM, Text')
-      // this places the text victory message at the 0,0 coordinate on the stage
-      .attr({x: 300, y: 275, w: 500})
-      .text('Push any key to try again!').css($text_css);
-      Crafty.background('black');
-
-  // declares an event called 'restart_game' and binds the KeyDown variable globally and declares a function
-  // to bring the game scene back up
-
-  // "Watch for the player to press a key, then restart the game
-  // when a key is pressed"
-  this.again_game = this.bind('KeyDown', function() {
-    Crafty.scene('Game_scene_1');
-  });
-}, 
-
-// Remove our event binding from above so that we don't
-// end up having multiple redundant event watchers after
-// multiple restarts of the game
-function() {
-  this.unbind('KeyDown', this.again_game);
 });
