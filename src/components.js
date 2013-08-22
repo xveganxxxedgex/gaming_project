@@ -26,13 +26,6 @@ Crafty.c('Actor', {
   },
 });
 
-// Crafty.c('Finish', {
-//   init: function() {
-//     this.requires('Actor, Color')
-//     this.color('orange');
-//   },
-// });
-
 Crafty.c('Maze_Up', {
   init: function() {
     this.requires('Actor, Solid, spr_maze_up');
@@ -89,7 +82,6 @@ Crafty.c('Maze_BLeft', {
 
 Crafty.c('Minotaur', {
   init: function() {
-    // this.requires('Actor, Fourway, Solid, spr_minotaur, SpriteAnimation')
     this.requires('Actor, Fourway, Collision, spr_minotaur, SpriteAnimation')
     .attr({ x: 300, y: 150,
       dX: 2, 
@@ -98,7 +90,6 @@ Crafty.c('Minotaur', {
       var animation_speed = 30;
 
       if ((this.x <= 457 || this.x >= 580) && (this.y <= 250 && this.y >= 200)) {
-        // var previous_x = 
         this.dX *= -1;
         if(this.x >= 580) {
           this.stop();
@@ -110,7 +101,6 @@ Crafty.c('Minotaur', {
         }
       }
       if ((this.x <= 400 || this.x >= 580) && (this.y >= 930 && this.y <= 980)) {
-        // var previous_x = 
         this.dX *= -1;
         if(this.x >= 580) {
           this.stop();
@@ -122,19 +112,16 @@ Crafty.c('Minotaur', {
         }
       }
       if ((this.x <= 1710 || this.x >= 1835) && (this.y >= 1250 && this.y <= 1300)) {
-        // var previous_x = 
         this.dX *= -1;
         this.dY *= -1;
         this.y += this.dY;
         if(this.x >= 1835) {
           this.stop();
-          // this.x += this.dX;
           this.y -= this.dY;
           this.animate('MinoLeft', animation_speed, -1);
         }
         if(this.x <= 1710){
           this.stop();
-          // this.x += this.dX;
           this.y -= this.dY;
           this.animate('MinoRight', animation_speed, -1);
         }
@@ -205,10 +192,6 @@ Crafty.c('Bubsy', {
  
     return this;
   },
-
-  // onFinish: function() {
-  //   this.onHit('Finish', console.log("on finish"));
-  // },
  
   // Stops the movement
   // the -= this._movement makes it so the character stops moving on contact.. If you change it
@@ -346,4 +329,3 @@ Crafty.c('Strawpie', {
     this.requires('Treat, spr_strawpie');
   }
 });
-

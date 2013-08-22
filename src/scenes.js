@@ -2,9 +2,6 @@
 // ------------------
 
 /////// NEED TO DO :
-// Make the minotaur kill you upon touch of all sides
-// Make a finish square that will only allow the game to end if you have ALL the treats AND are 
-// standing on it...
 // need to make it so that when the minotaur kills you, the timer also resets...
 
 
@@ -22,7 +19,7 @@ Crafty.scene('Game_scene_1', function() {
   var new_game = true;
 
  
-  // Player character, placed at 15, 0 on our grid
+  // Player character, placed at 6, 1 on our grid
   this.player = Crafty.e('Bubsy').at(6, 1);
   this.occupied[this.player.at().x][this.player.at().y] = true;
 
@@ -112,349 +109,57 @@ Crafty.scene('Game_scene_1', function() {
     }
   }
 
-  for (var x = 0; x < Game.map_grid.width; x++) {
-    for (var y = 0; y < Game.map_grid.height; y++) {
-      if ((y == 2) && (x >= 2 && x <= 37 && x != 8 && x != 14 && x != 16 && x != 18 && x != 19 && x != 20 && x != 29 && x != 31)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 4) && (x >= 1 && x <= 35 && x != 6 && x != 8 && x != 9 && x != 10 && x != 12 && x != 14 && x != 16 && x != 17 && x != 18 && x != 20 && x != 22)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 5) && (x >= 1 && x <= 23 && x != 1 && x != 2 && x != 3 && x != 4 && x != 6 && x != 8 && x != 9 && x != 10 && x != 12 && x != 14 && x != 20 && x != 22)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 6) && (x >= 26 && x <= 33)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 7) && (x >= 2 && x <= 23 && x != 8 && x != 10 && x != 9 && x != 10 && x != 18 && x != 20 && x != 22 && x != 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 7) && (x == 29 || x == 33)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 8) && (x == 27 || x == 31)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 9) && (x >= 1 && x <= 34 && x != 5 && x != 16 && x != 20 && x != 22 && x != 24 &&  x != 26)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 11) && (x >= 2 && x <= 24 && x != 9 && x != 18 && x != 22 && x != 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 11) && (x >= 26 && x <= 37)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 13) && (x >= 2 && x <= 24 && x != 3 && x != 11 && x != 16 && x != 18 && x != 20 && x != 22 && x != 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 13) && (x >= 27 && x <= 38)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 15) && (x >= 2 && x <= 36 && x != 3 && x != 5 && x != 14 && x != 16 && x != 18 && x != 20 && x != 22 && x != 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 16) && (x >= 2 && x <= 24 && x != 3  && x != 5 && x != 7 && x != 8 && x != 9 && x != 10 && x != 11 && x != 12 && x != 14 && x != 16 && x != 18 && x != 20 && x != 22 && x != 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 17) && (x >= 30 && x <= 34)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 19) && (x >= 2 && x <= 24 && x != 3 && x != 5 && x != 12 && x != 14 && x != 16 && x != 18 && x != 20 && x != 22 && x != 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 21) && (x >= 2 && x <= 24 && x != 3 && x != 14 && x != 16 && x != 18 && x != 20 && x != 22 && x != 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 23) && (x >= 2 && x <= 24 && x != 20 && x != 22 && x != 23 && x != 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 25) && (x >= 1 && x <= 24 && x != 9 && x != 20 && x != 22 && x != 23 && x != 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 26) && (x == 8 || x == 10 || x == 24 || x == 25)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 27) && (x >= 30 && x <= 32)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 28) && (x == 2 || x == 8 || x == 10 && x == 11 && x == 12 || x == 25)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 29) && (x >= 2 && x <= 35 && x != 3 && x != 9 && x != 10 && x != 11 && x != 12 && x != 13 && x != 26)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 30) && (x >= 2 && x <= 14 && x != 3 && x != 4 && x != 5 && x != 6 && x != 7 && x != 9)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 31) && (x >= 2 && x <= 37 && x != 7 && x != 9 && x != 11 && x != 12 && x != 13)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 32) && (x == 2 || x == 8 && x == 10 || x == 12)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 33) && (x >= 2 && x <= 37 && x != 3 && x != 5 && x != 7 && x != 9)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 35) && (x >= 2 && x <= 38 && x != 3 && x != 5 && x != 7 && x != 9 && x != 11)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((y == 37) && (x >= 2 && x <= 37 && x != 3 && x != 5 && x != 7 && x != 9)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
 
-      if ((x == 27) && (y <= 29 && y >= 16)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 29) && (y <= 27 && y >= 17)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 33) && (y <= 27 && y >= 19)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 35) && (y <= 29 && y >= 17)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 35) && (y <= 9 && y >= 5)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 37) && (y <= 30 && y >= 15)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 37) && (y >= 3 && y <= 10)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 2) && y == 6) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if (x == 5 && y == 5) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if (x == 7 && y <= 7 && y != 0) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 9) && (y >= 6 && y <= 8)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 11) && ((y >= 5) && (y <= 7))) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 13) && ((y == 3) || (y == 4) || (y == 6))) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 15) && ((y !== 0) && (y != 1) && (y <= 5))) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 17) && ((y <= 3 && y != 0) || (y == 5 && y != 0))) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 18) && (y == 5 && y != 0)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 19) && (y <= 9 && y != 2 && y != 0)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      ////////////////////////// END SECTION 1 //////////////////////////
-      if ((x <= 8 && x != 0 && x != 1) && (y == 11 && y != 1 && y != 0)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 8) && (y == 10)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      } 
-      if ((x == 2) && (y >= 11 && y <= 23)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 19) && (y <= 22 && y >= 11)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 18) && (y == 14)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 15) && (y <= 23 && y >= 13)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 10) && (y <= 12 && y >= 11)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 17) && (y <= 11 && y >= 10)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 4) && (y <= 21 && y >= 13)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 13) && (y <= 21 && y >= 15)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 6) && (y <= 19 && y >= 16)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 11) && (y <= 18 && y >= 17)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 17) && (y <= 21 && y >= 12)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 8) && (y >= 26 && y <= 33)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 2 && x <= 7) && (y == 33)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 2) && (y >= 27 && y <= 37)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 4) && (y >= 35 && y <= 38)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 6) && (y >= 33 && y <= 37)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 8) && (y >= 35 && y <= 38)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 3 && x <= 6) && (y == 27)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 4 && x <= 7) && (y == 29)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 3 && x <= 6) && (y == 31)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 10) && (y <= 37 && y >= 25 && y != 29)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 21) && (y == 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 11 && x <= 12) && (y == 28)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 12 && x <= 23) && (y == 27)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 23) && (y == 26)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 21) && (y <= 10 && y >= 2)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 22 && x <= 28) && (y == 2)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 30) && (y >= 1 && y <= 4)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 23 && x <= 29) && (y == 4)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 23) && (y >= 5 && y <= 15)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 21) && (y <= 14 && y >= 13)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 21) && (y <= 23 && y >= 17)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 25) && (y <= 25 && y >= 6)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x == 23) && (y <= 20 && y >= 17)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 23 && x <= 24) && (y == 22)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
-      if ((x >= 22 && x <= 23) && (y == 24)) {
-        Crafty.e('Maze_Up').at(x, y);
-        this.occupied[x][y] = true;
-      }
+  var map_data = [
+    "                                       ",
+    "       #         # #          #        ",
+    "  ###### ##### # #   ######## # ###### ",
+    "       #     # # # # #        #      # ",
+    " ##### # M # # #   # # ############# # ",
+    "     # #   # # ##### # #           # # ",
+    "  #    # # # #     # # # ######### # # ",
+    "  ###### # ####### # # # #   #   # # # ",
+    "         #         # # # # #   #   # # ",
+    " #### ########## ### # # # ######### # ",
+    "        #        #   # # #           # ",
+    "  ####### ######## ### # ############# ",
+    "  #       #      # #   # #             ",
+    "  # ####### #### # # # # # ############",
+    "  # #          # ### # # #             ",
+    "  # # ######## # # # # # ############# ",
+    "  # # #      # # # # # # # #         # ",
+    "  # # #  M # # # # # # # # # ####### # ",
+    "  # # #    # # # # # # # # # #     # # ",
+    "  # # ###### # # # # # # # # #   # # # ",
+    "  # #        # # # # # # # # #   # # # ",
+    "  # ########## # # # # # # # #   # # # ",
+    "  #            #   # # ### # # M # # # ",
+    "  ################## #   # # #   # # # ",
+    "                     ### # # #   # # # ",
+    " ######## ########## #   # # #   # # # ",
+    "        # #            ### # #   # # # ",
+    "  ##### # # ############   # ##### # # ",
+    "  #     # ###            # #       # # ",
+    "  # #####     ############ ######### # ",
+    "  #     # #####                      # ",
+    "  ##### # #   ######################## ",
+    "  #     # # #                          ",
+    "  ##### # ############################ ",
+    "  #   #   #                            ",
+    "  # # # # # ###########################",
+    "  # # # # #                            ",
+    "  # # # # ############################ ",
+    "    #   #                              "
+];
+
+for (var y = 1; y < map_data.length; y++) {
+    for (var x = 1; x < map_data[y].length; x++) {
+        if (map_data[y][x] === "#") {
+            Crafty.e('Maze_Up').at(x, y);
+            this.occupied[x][y] = true;
+        }
     }
-  }
-
+}
  
   var max_treats = 100;
   for (var x = 0; x < Game.map_grid.width; x++) {
@@ -463,54 +168,12 @@ Crafty.scene('Game_scene_1', function() {
       var chance = Math.random();
       if (chance < 0.1) {
         if (Crafty('Treat').length < max_treats && !this.occupied[x][y]) {
-          if(new_sweet == 1) {
-            Crafty.e('Mushmousse').at(x, y);
-          }
-          else if(new_sweet == 2) {
-            Crafty.e('Pinkpie').at(x, y);
-          }
-          else if(new_sweet == 3) {
-            Crafty.e('Tailpie').at(x, y);
-          }
-          else if(new_sweet == 4) {
-            Crafty.e('Mushcake').at(x, y);
-          }
-          else if(new_sweet == 5) {
-            Crafty.e('Lolli').at(x, y);
-          }
-          else if(new_sweet == 6) {
-            Crafty.e('Candy').at(x, y);
-          }
-          else if(new_sweet == 7) {
-            Crafty.e('House').at(x, y);
-          }
-          else if(new_sweet == 8) {
-            Crafty.e('Ice').at(x, y);
-          }
-          else if(new_sweet == 9) {
-            Crafty.e('Cherry').at(x, y);
-          }
-          else if(new_sweet == 10) {
-            Crafty.e('Heartmousse').at(x, y);
-          }
-          else if(new_sweet == 1) {
-            Crafty.e('Chocheart').at(x, y); 
-          }
-          else if(new_sweet == 12) {
-            Crafty.e('Pinkmousse').at(x, y); 
-          }
-          else if(new_sweet == 13) {
-            Crafty.e('Chocpie').at(x, y);
-          }
-          else if(new_sweet == 14) {
-            Crafty.e('Mango').at(x, y);
-          }
-          else if(new_sweet == 15) {
-            Crafty.e('Strawpie').at(x, y);
-          }
-          else if(new_sweet == 16) {
-            Crafty.e('Cookie').at(x, y);
-          }
+          Crafty.e([
+            'Mushmousse', 'Pinkpie', 'Tailpie', 'Mushcake',
+            'Lolli', 'Candy', 'House', 'Ice',
+            'Cherry', 'Heartmousse', 'Chocheart', 'Pinkmousse',
+            'Chocpie', 'Mango', 'Strawpie', 'Cookie'
+        ][Math.floor(Math.random() * 16)]).at(x, y);
         }
       }
     }
@@ -526,7 +189,6 @@ Crafty.scene('Game_scene_1', function() {
   });
 
   this.show_died = this.bind('Kill', function() {
-      alert("killed");
       new_game = false;
       console.log(log_time());
       clearInterval(counter);
@@ -629,11 +291,11 @@ Crafty.scene('Loading', function(){
       kill:     ['assets/exploder.mp3'], 
       win:      ['assets/x_got.mp3'],
       start:    ['assets/sphere.mp3'],
-      theme:    ['assets/breezy.mp3']  ///////////////ENABLE MUSIC
+      // theme:    ['assets/breezy.mp3']  ///////////////ENABLE MUSIC
     });
 
 
-    Crafty.audio.play("theme", -1);  ///////////////ENABLE MUSIC
+    // Crafty.audio.play("theme", -1);  ///////////////ENABLE MUSIC
  
     // Now that our sprites are ready to draw, start the game
     Crafty.scene('Game_scene_1');

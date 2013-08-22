@@ -1,9 +1,9 @@
-window.addEventListener("keydown", function(e) {
-    // space and arrow keys
-    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
-    }
-}, false);
+// window.addEventListener("keydown", function(e) {
+//     // space and arrow keys
+//     if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+//         e.preventDefault();
+//     }
+// }, false);
 
 
 
@@ -33,7 +33,7 @@ Game = {
 
   // Initialize and start our game
   start: function() {
-    // Start crafty and set a background color so that we can see it's working
+    // Crafty.init(2280, 2280);
     Crafty.init(1140, 570);
 
     Crafty.load(['assets/ground_tile.gif'], function(){
